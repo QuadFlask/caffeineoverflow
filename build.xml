@@ -4,8 +4,10 @@
   
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
   <property name="skip.tests" value="true"/>
-
+   -->
+  
   <!-- Compiler options -->
   
   <property name="compiler.debug" value="on"/>
@@ -194,6 +196,8 @@
   <target name="clean" depends="clean.module.caffeineoverflow" description="cleanup all"/>
   
   <target name="build.modules" depends="init, clean, compile.module.caffeineoverflow" description="build all modules"/>
-  
+
+  <target name="test" depends="build.modules" description="test of"/>
+
   <target name="all" depends="build.modules" description="build all"/>
 </project>
