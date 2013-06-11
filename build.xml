@@ -18,4 +18,8 @@
         <delete dir="build" />
     </target>
 
+    <target name="doc">
+        <mkdir dir="build/docs"/>
+    </target>
+
 </project>
