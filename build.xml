@@ -22,4 +22,8 @@
         <mkdir dir="build/docs"/>
     </target>
 
+    <target name="jar">
+        <mkdir dir="build/jars"/>
+    </target>
+
 </project>
