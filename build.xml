@@ -4,7 +4,7 @@
 
     <target name="compile">
         <mkdir dir="build/classes" />
-        <javac includeantruntime="false" debug="on" srcdir="src/main/test"
+        <javac includeantruntime="false" debug="on" srcdir="src/test"
                destdir="build/classes" target="1.7" />
     </target>
 
