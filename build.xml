@@ -8,7 +8,23 @@
                destdir="build/classes" target="1.7" />
     </target>
 
-    <target name="test">
+    <target name="junit" depends="compile">
+        <mkdir dir="${report.dir}"/>
+        <junit printsummary="yes" haltonfailure="yes" showoutput="yes">
+            <classpath>
+                <path refid="classpath"/>
+                <path refid="application"/>
+            </classpath>
+
+            <formatter type="xml"/>
+
+            <batchtest fork="yes">
+                <fileset dir="${src.dir}" includes="*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="test" depends="junit">
         <mkdir dir="build/tests" />
         <javac includeantruntime="false" srcdir="src/test/"
                classpath="build/classes" destdir="build/tests" />

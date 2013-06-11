@@ -1,7 +1,4 @@
-Caffeine Overflow
-
-[![Build Status](https://travis-ci.org/QuadFlask/caffeineoverflow.png)](https://travis-ci.org/QuadFlask/caffeineoverflow.png)
-
+# Caffeine Overflow [![Build Status](https://travis-ci.org/QuadFlask/caffeineoverflow.png)](https://travis-ci.org/QuadFlask/caffeineoverflow.png)
 ================
 
 > This main.game project is IDEA java project structure.
