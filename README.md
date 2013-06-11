@@ -1,7 +1,7 @@
 Caffeine Overflow
 ================
 
-> This game project is IDEA java project structure. 
+> This main.game project is IDEA java project structure.
 
 ![caffeine overflow img](https://github.com/QuadFlask/caffeineoverflow/blob/master/asset/logo.png?raw=true)
 

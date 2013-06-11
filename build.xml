@@ -7,7 +7,11 @@
   <!-- 
   <property name="skip.tests" value="true"/>
    -->
-  
+    <property name="src" value="src/main/" />
+    <property name="target" location="target" />
+    <property name="testsrc" location="src/test/" />
+    <property name="testbin" location="${target}/test/" />
+
   <!-- Compiler options -->
   
   <property name="compiler.debug" value="on"/>
