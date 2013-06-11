@@ -2,7 +2,7 @@
 <project name="caffeineoverflow" default="all">
   
   
-  <property file="caffeineoverflow.properties"/>
+  <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
   <!-- 
   <property name="skip.tests" value="true"/>
@@ -105,7 +105,85 @@
   
   <!-- Modules -->
   
-  <import file="/module_caffeineoverflow.xml"/>
+  
+  <!-- Module caffeineoverflow -->
+  
+  <dirname property="module.caffeineoverflow.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.caffeineoverflow" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.caffeineoverflow" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.caffeineoverflow" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.caffeineoverflow" value="${compiler.args}"/>
+  
+  <property name="caffeineoverflow.output.dir" value="${module.caffeineoverflow.basedir}/out/production/caffeineoverflow"/>
+  <property name="caffeineoverflow.testoutput.dir" value="${module.caffeineoverflow.basedir}/out/test/caffeineoverflow"/>
+  
+  <path id="caffeineoverflow.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="caffeineoverflow.module.production.classpath">
+    <path refid="${module.jdk.classpath.caffeineoverflow}"/>
+  </path>
+  
+  <path id="caffeineoverflow.runtime.production.module.classpath">
+    <pathelement location="${caffeineoverflow.output.dir}"/>
+  </path>
+  
+  <path id="caffeineoverflow.module.classpath">
+    <path refid="${module.jdk.classpath.caffeineoverflow}"/>
+    <pathelement location="${caffeineoverflow.output.dir}"/>
+  </path>
+  
+  <path id="caffeineoverflow.runtime.module.classpath">
+    <pathelement location="${caffeineoverflow.testoutput.dir}"/>
+    <pathelement location="${caffeineoverflow.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.caffeineoverflow">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.caffeineoverflow">
+    <patternset refid="excluded.from.module.caffeineoverflow"/>
+  </patternset>
+  
+  <path id="caffeineoverflow.module.sourcepath">
+    <dirset dir="${module.caffeineoverflow.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.caffeineoverflow" depends="compile.module.caffeineoverflow.production,compile.module.caffeineoverflow.tests" description="Compile module caffeineoverflow"/>
+  
+  <target name="compile.module.caffeineoverflow.production" depends="register.custom.compilers" description="Compile module caffeineoverflow; production classes">
+    <mkdir dir="${caffeineoverflow.output.dir}"/>
+    <javac2 destdir="${caffeineoverflow.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.caffeineoverflow}/javac">
+      <compilerarg line="${compiler.args.caffeineoverflow}"/>
+      <bootclasspath refid="caffeineoverflow.module.bootclasspath"/>
+      <classpath refid="caffeineoverflow.module.production.classpath"/>
+      <src refid="caffeineoverflow.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.caffeineoverflow"/>
+    </javac2>
+    
+    <copy todir="${caffeineoverflow.output.dir}">
+      <fileset dir="${module.caffeineoverflow.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.caffeineoverflow.tests" depends="register.custom.compilers,compile.module.caffeineoverflow.production" description="compile module caffeineoverflow; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.caffeineoverflow" description="cleanup module">
+    <delete dir="${caffeineoverflow.output.dir}"/>
+    <delete dir="${caffeineoverflow.testoutput.dir}"/>
+  </target>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
