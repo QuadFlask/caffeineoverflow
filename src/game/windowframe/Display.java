@@ -5,8 +5,8 @@ import flask.utils.*;
 import javax.swing.*;
 import java.awt.*;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public class Display extends JPanel {
 	long sum = 0;
@@ -18,7 +18,7 @@ public class Display extends JPanel {
 	private FixedQueue<Double> fps_Queue = new FixedQueue<Double>(16);
 	private Font font_consolas = new Font("consolas", Font.PLAIN, 11);
 	private Color font_debug = Color.orange;
-	private Logger logger = LogManager.getLogger(getClass());
+//	private Logger logger = LogManager.getLogger(getClass());
 
 	public Display(WindowForm masterWindow) {
 		this.masterWindow = masterWindow;
@@ -47,12 +47,12 @@ public class Display extends JPanel {
 	}
 
 	public void onEnterFrame() {
-		logger.debug("debug.");
-		logger.info("info.");
-		logger.warn("warn.");
-		logger.error("error.");
-
-		System.out.println("isDebugEnabled : " + logger.isDebugEnabled());
+//		logger.debug("debug.");
+//		logger.info("info.");
+//		logger.warn("warn.");
+//		logger.error("error.");
+//
+//		System.out.println("isDebugEnabled : " + logger.isDebugEnabled());
 		//logger.fatal("fatal.");
 //		try {
 //			Graphics2D g = (Graphics2D) getMasterWindow().getBufferStrategy().getDrawGraphics();
