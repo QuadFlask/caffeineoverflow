@@ -4,13 +4,7 @@
   
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
-  <!-- 
   <property name="skip.tests" value="true"/>
-   -->
-    <property name="src" value="src/main/" />
-    <property name="target" location="target" />
-    <property name="testsrc" location="src/test/" />
-    <property name="testbin" location="${target}/test/" />
 
   <!-- Compiler options -->
   
@@ -130,20 +124,24 @@
   
   <path id="caffeineoverflow.module.production.classpath">
     <path refid="${module.jdk.classpath.caffeineoverflow}"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
   </path>
   
   <path id="caffeineoverflow.runtime.production.module.classpath">
     <pathelement location="${caffeineoverflow.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
   </path>
   
   <path id="caffeineoverflow.module.classpath">
     <path refid="${module.jdk.classpath.caffeineoverflow}"/>
     <pathelement location="${caffeineoverflow.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
   </path>
   
   <path id="caffeineoverflow.runtime.module.classpath">
     <pathelement location="${caffeineoverflow.testoutput.dir}"/>
     <pathelement location="${caffeineoverflow.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.10.jar"/>
   </path>
   
   
