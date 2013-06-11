@@ -105,7 +105,7 @@
   
   <!-- Modules -->
   
-  <import file="${basedir}/caffeineoverflow/module_caffeineoverflow.xml"/>
+  <import file="/module_caffeineoverflow.xml"/>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
