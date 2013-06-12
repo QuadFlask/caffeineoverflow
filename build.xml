@@ -16,7 +16,8 @@
     <target name="all" depends="doc,jar"/>
 
     <target name="compile">
-        <mkdir dir="build/classes"/>
+        <mkdir dir="build/main"/>
+        <mkdir dir="build/test"/>
         <javac debug="on" srcdir="src/main"
                destdir="build/main" target="1.7"/>
         <javac debug="on" srcdir="src/test"
