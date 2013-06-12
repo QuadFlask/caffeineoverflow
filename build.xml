@@ -28,7 +28,21 @@
     </target>
 
     <target name="test" depends="compile">
+        <!--<junit fork="yes" haltonfailure="true">-->
+        <!--<classpath refid="classpath.test"/>-->
+        <!--<batchtest fork="yes" todir="tres">-->
+        <!--<formatter type="brief" usefile="false"/>-->
+        <!--<fileset dir="${test}">-->
+        <!--<include name="**/*Test*.java"/>-->
+        <!--</fileset>-->
+        <!--</batchtest>-->
+        <!--</junit>-->
 
+        <junit haltonfailure="no" printsummary="true">
+            <classpath>
+                <path refid="classpath.test"/>
+            </classpath>
+        </junit>
     </target>
 
     <target name="clean">
