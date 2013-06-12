@@ -5,9 +5,11 @@
     <property name="dist" location="dist"/>
     <property name="test" location="test"/>
     <property name="junit" location="lib/junit-4.11.jar"/>
+    <property name="javafx" location="lib/javafx-mx.jar"/>
 
     <path id="classpath.test">
         <pathelement location="${junit}"/>
+        <pathelement location="${javafx}"/>
         <pathelement location="${test}"/>
         <pathelement location="${build}/main"/>
         <pathelement location="${build}/test"/>
@@ -18,15 +20,17 @@
     <target name="compile">
         <mkdir dir="build/main"/>
         <mkdir dir="build/test"/>
-        <javac debug="on" srcdir="src/main"
-               destdir="build/main" target="1.7"/>
-        <javac debug="on" srcdir="src/test"
-               destdir="build/test" target="1.7"/>
+        <javac debug="on" srcdir="src/main" destdir="build/main" target="1.7">
+            <classpath>
+                <pathelement location="${javafx}"/>
+            </classpath>
+        </javac>
+        <javac debug="on" srcdir="src/test" destdir="build/test" target="1.7"/>
     </target>
 
     <target name="test" depends="compile">
         <junit fork="yes" haltonfailure="true">
-            <classpath refid="classpath.test" />
+            <classpath refid="classpath.test"/>
             <batchtest fork="yes" todir="tres">
                 <formatter type="brief" usefile="false"/>
                 <fileset dir="${test}">
