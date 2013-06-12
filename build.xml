@@ -1,37 +1,42 @@
 <project default="all">
 
-    <target name="all" depends="doc,jar" />
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="test" location="test"/>
+    <property name="junit" location="lib/junit-4.11.jar"/>
+
+    <path id="classpath.test">
+        <pathelement location="${junit}"/>
+        <pathelement location="${test}"/>
+        <pathelement location="${build}/main"/>
+        <pathelement location="${build}/test"/>
+    </path>
+
+    <target name="all" depends="doc,jar"/>
 
     <target name="compile">
-        <mkdir dir="build/classes" />
-        <javac includeantruntime="false" debug="on" srcdir="src/test"
-               destdir="build/classes" target="1.7" />
+        <mkdir dir="build/classes"/>
+        <javac debug="on" srcdir="src/main"
+               destdir="build/main" target="1.7"/>
+        <javac debug="on" srcdir="src/test"
+               destdir="build/test" target="1.7"/>
     </target>
 
-    <target name="junit" depends="compile">
-        <mkdir dir="${report.dir}"/>
-        <junit printsummary="yes" haltonfailure="yes" showoutput="yes">
-            <classpath>
-                <path refid="classpath"/>
-                <path refid="application"/>
-            </classpath>
-
-            <formatter type="xml"/>
-
-            <batchtest fork="yes">
-                <fileset dir="${src.dir}" includes="*Test.java"/>
+    <target name="test" depends="compile">
+        <junit fork="yes" haltonfailure="true">
+            <classpath refid="classpath.test" />
+            <batchtest fork="yes" todir="tres">
+                <formatter type="brief" usefile="false"/>
+                <fileset dir="${test}">
+                    <include name="**/*Test*.java"/>
+                </fileset>
             </batchtest>
         </junit>
     </target>
 
-    <target name="test" depends="junit">
-        <mkdir dir="build/tests" />
-        <javac includeantruntime="false" srcdir="src/test/"
-               classpath="build/classes" destdir="build/tests" />
-    </target>
-
     <target name="clean">
-        <delete dir="build" />
+        <delete dir="build"/>
     </target>
 
     <target name="doc">
