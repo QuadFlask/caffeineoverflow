@@ -1,0 +1,10 @@
+.svn
+.project
+.metadata
+.settings
+.idea
+.classpath
+caffeineoverflow_dev.eml
+caffeineoverflow_dev.iml
+caffeineoverflow_dev.userlibraries
+/out
