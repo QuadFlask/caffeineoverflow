@@ -6,6 +6,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import main.flask.threadpool.DurationRunnable;
 import main.flask.utils.Vec2D;
@@ -58,7 +60,7 @@ import main.game.resource.SoundAsset.SOUND_ID;
 
 public class BulletUpdator extends DurationRunnable {
 
-	private List<Shootable> shootables = Collections.synchronizedList(new ArrayList<Shootable>());
+	private List<Shootable> shootables = Collections.synchronizedList(new ArrayList<Shootable>(1000));
 	private List<Unit> mobs;
 
 	private List<Unit> unitList;
@@ -69,7 +71,7 @@ public class BulletUpdator extends DurationRunnable {
 	private BlackHole blackHole;
 
 	private Rectangle2D stage;
-	private final int gcDelay = 10;
+	private final int gcDelay = 100;
 	private int gcTime = 0;
 
 	public BulletUpdator(Rectangle2D stage, List<Unit> unitList) {
@@ -114,6 +116,20 @@ public class BulletUpdator extends DurationRunnable {
 	}
 
 	private void collisionCheck() {
+//		Stream<Shootable> stream = shootables.stream();
+//		stream.parallel().filter((s) -> {
+//			Vec2D sPos = s.getPosition();
+//			for (Unit unit : unitList) {
+//				Vec2D uPos = unit.getPosition();
+//				if (sPos.y > uPos.y - 100) {
+//					if (sPos.distanceWith2(uPos) < unit.getUnitSizeRange2()) {
+//						unit.damaging(s.getDamage());
+//						return true;
+//					}
+//				}
+//			}
+//			return false;
+//		}).map();
 		synchronized (shootables) {
 			Vec2D sPos, uPos;
 			for (Shootable s : shootables) {
